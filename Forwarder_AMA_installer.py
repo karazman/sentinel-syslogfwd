@@ -205,7 +205,7 @@ def disable_firewalld():
 def setup_logrotate():
     subprocess.run("sudo yum install -y logrotate", shell=True, check=False)
     logrotate_config = """
-/var/log/messages {
+    /var/log/messages {
     daily
     rotate 7
     compress
@@ -213,8 +213,8 @@ def setup_logrotate():
     missingok
     notifempty
     create 0640 root utmp
-}
-"""
+    }
+    """
     with open("/tmp/custom-messages", "w") as f:
         f.write(logrotate_config)
     subprocess.run("sudo mv /tmp/custom-messages /etc/logrotate.d/custom-messages", shell=True, check=False)
